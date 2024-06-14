@@ -7,10 +7,12 @@
   import Footer from '../lib/Footer.svelte';
 
   export let data;
+
+  let auth = data.user !== null;
 </script>
 
 <div class="flex flex-col min-h-dvh">
-  <Header />
+  <Header {auth} />
   <main class="flex-1">
     <Hero />
     <section class="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
