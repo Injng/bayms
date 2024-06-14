@@ -5,6 +5,8 @@
   import About from '../lib/About.svelte';
   import Audition from '../lib/Audition.svelte';
   import Footer from '../lib/Footer.svelte';
+
+  export let data;
 </script>
 
 <div class="flex flex-col min-h-dvh">
@@ -22,7 +24,9 @@
           </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-	  <Event />
+	  {#each data.events as event}
+	    <Event name={event.name} description={event.description} date={event.date} time={event.time} />
+	  {/each}
         </div>
       </div>
     </section>
