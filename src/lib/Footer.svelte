@@ -1,3 +1,12 @@
+<!--
+ * (c) Copyright BAYMS
+ *
+ * Original Author:     Lin Jiang
+ * License:             MIT License
+ *
+ * Footer component with donation and sponsor information.
+  -->
+
 <script lang="ts">
   import Social from '../lib/Social.svelte';
 </script>
@@ -23,7 +32,6 @@
 	<li>Ebay</li>
 	<li>Oracle</li>
 	<li>Intel</li>
-	<li>Juniper</li>
 	<li>Applied Materials﻿</li>
 	<li>Meta</li>
 	<li>Juniper Networks</li>

@@ -1,14 +1,14 @@
 <script lang="ts">
-  import Header from '../lib/Header.svelte';
-  import Hero from '../lib/Hero.svelte';
-  import Event from '../lib/Event.svelte';
-  import About from '../lib/About.svelte';
-  import Audition from '../lib/Audition.svelte';
-  import Footer from '../lib/Footer.svelte';
+  import Header from '../lib/Header.svelte'
+  import Hero from '../lib/Hero.svelte'
+  import Event from '../lib/Event.svelte'
+  import About from '../lib/About.svelte'
+  import Audition from '../lib/Audition.svelte'
+  import Footer from '../lib/Footer.svelte'
 
-  export let data;
+  export let data
 
-  let auth = data.user !== null;
+  let auth = data.user !== null
 </script>
 
 <div class="flex flex-col min-h-dvh">
