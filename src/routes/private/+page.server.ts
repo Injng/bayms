@@ -28,30 +28,26 @@ export const actions: Actions = {
   save: async ({ request, locals: { supabase } }) => {
     // get form data
     const formData = await request.formData()
-    const name = formData.get('name') as string
-    const phone = formData.get('phone') as string
-    const street = formData.get('address-street') as string
-    const city = formData.get('address-city') as string
-    const state = formData.get('address-state') as string
-    const zip = formData.get('address-zip') as string
-    const school = formData.get('school') as string
-    const grade = formData.get('grade') as string
-    const birthday = formData.get('birthday') as string
-    const picture = formData.get('picture') as File
-    const bio = formData.get('biography') as string
-    const p1Name = formData.get('parent1-name') as string
-    const p1Phone = formData.get('parent1-phone') as string
-    const p1Email = formData.get('parent1-email') as string
-    const p2Name = formData.get('parent2-name') as string
-    const p2Phone = formData.get('parent2-phone') as string
-    const p2Email = formData.get('parent2-email') as string
+    let name = formData.get('name') as string
+    let phone = formData.get('phone') as string
+    let street = formData.get('address-street') as string
+    let city = formData.get('address-city') as string
+    let state = formData.get('address-state') as string
+    let zip = formData.get('address-zip') as string
+    let school = formData.get('school') as string
+    let grade = formData.get('grade') as string
+    let birthday = formData.get('birthday') as string
+    let picture = formData.get('picture') as File
+    let bio = formData.get('biography') as string
+    let p1Name = formData.get('parent1-name') as string
+    let p1Phone = formData.get('parent1-phone') as string
+    let p1Email = formData.get('parent1-email') as string
+    let p2Name = formData.get('parent2-name') as string
+    let p2Phone = formData.get('parent2-phone') as string
+    let p2Email = formData.get('parent2-email') as string
 
     // validate sizes
-    if (picture.size > 5242880) {
-       alert("Picture is too big!");
-    }
     if (bio.length > 650) {
-       alert("Bio is too long!");
        bio = ""
     }
        
