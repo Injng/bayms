@@ -15,6 +15,7 @@
   export let data
 
   let auth = data.user !== null
+  let seniors = data.members.filter(member => member.grade === '12')
 </script>
 
 <div class="flex flex-col min-h-dvh">
@@ -30,7 +31,7 @@
             </p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {#each data.members as member}
+            {#each seniors as member}
               <Member src={member.picture} name={member.name} instruments={member.instruments} bio={member.bio} />
             {/each}
           </div>
