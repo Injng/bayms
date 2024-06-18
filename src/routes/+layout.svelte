@@ -1,3 +1,12 @@
+<!--
+ * (c) Copyright BAYMS
+ *
+ * Original Author:     Lin Jiang
+ * License:             MIT License
+ *
+ * Layout file for Supabase Auth.
+  -->
+
 <script>
   import { goto, invalidate } from '$app/navigation';
   import { onMount } from 'svelte';

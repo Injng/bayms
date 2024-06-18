@@ -1,3 +1,12 @@
+<!--
+ * (c) Copyright BAYMS
+ *
+ * Original Author:     Lin Jiang
+ * License:             MIT License
+ *
+ * Home page with hero section, upcoming events, about, audition information, and footer.
+  -->
+
 <script lang="ts">
   import Header from '../lib/Header.svelte'
   import Hero from '../lib/Hero.svelte'

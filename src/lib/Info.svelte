@@ -9,6 +9,10 @@
 
 <script lang="ts">
   export let user: any;
+
+  let charCount = user.bio != null ? user.bio.length : 0;
+
+  user.instruments = user.instruments ?? []
 </script>
 
 <div class="p-6 bg-white rounded-lg shadow-md">
@@ -167,9 +171,34 @@
         class="flex min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
         name="biography"
         placeholder="Enter your biography (max 650 chars)"
-	value={user.bio}
-	maxlength="650"
+	    value={user.bio}
+	    maxlength="650"
+        on:input={(e) => charCount = e.target.value.length}
         ></textarea>
+        <p class="text-xs font-thin">{charCount}/650</p>
+    </div>
+    <div class="mb-4">
+        <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="instruments"
+            >
+            Instruments
+        </label>
+        <select name="instruments" multiple class="flex h-auto rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full">
+            <option value="Violin" selected={user.instruments.includes("violin")}>Violin</option>
+            <option value="Viola" selected={user.instruments.includes("viola")}>Viola</option>
+            <option value="Cello" selected={user.instruments.includes("cello")}>Cello</option>
+            <option value="Flute" selected={user.instruments.includes("flute")}>Flute</option>
+            <option value="Oboe" selected={user.instruments.includes("oboe")}>Oboe</option>
+            <option value="Clarinet" selected={user.instruments.includes("clarinet")}>Clarinet</option>
+            <option value="Bassoon" selected={user.instruments.includes("bassoon")}>Bassoon</option>
+            <option value="Saxophone" selected={user.instruments.includes("saxophone")}>Saxophone</option>
+            <option value="Trumpet" selected={user.instruments.includes("trumpet")}>Trumpet</option>
+            <option value="Piano" selected={user.instruments.includes("piano")}>Piano</option>
+            <option value="Voice" selected={user.instruments.includes("voice")}>Voice</option>
+        </select>
+        <p class="text-xs font-thin">Ctrl/Cmd for multiple selections</p>
+        <p class="text-xs font-thin">Previously selected: {user.instruments.join(', ')}</p>
     </div>
     <div class="mb-4">
       <label

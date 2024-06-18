@@ -1,3 +1,12 @@
+/**
+ * (c) Copyright BAYMS
+ *
+ * Original Author:     Lin Jiang
+ * License:             MIT License
+ *
+ * Provides signout action.
+ **/
+
 import { supabase } from "$lib/supabaseClient";
 import { redirect } from '@sveltejs/kit'
 import type { Actions } from './$types'

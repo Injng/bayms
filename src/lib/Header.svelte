@@ -7,7 +7,7 @@
     <span class="text-lg font-semibold">BAYMS</span>
   </a>
   <nav class="ml-auto flex gap-4 sm:gap-6">
-    <a class="text-sm font-normal hover:underline underline-offset-4" href="/">
+    <a class="text-sm font-normal hover:underline underline-offset-4" href="/members">
       Members
     </a>
     {#if auth}

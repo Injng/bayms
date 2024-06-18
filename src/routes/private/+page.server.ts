@@ -39,6 +39,7 @@ export const actions: Actions = {
     let birthday = formData.get('birthday') as string
     let picture = formData.get('picture') as File
     let bio = formData.get('biography') as string
+    let instruments = formData.getAll('instruments') as string[]
     let p1Name = formData.get('parent1-name') as string
     let p1Phone = formData.get('parent1-phone') as string
     let p1Email = formData.get('parent1-email') as string
@@ -50,6 +51,8 @@ export const actions: Actions = {
     if (bio.length > 650) {
        bio = ""
     }
+
+    console.log(instruments)
        
     // update database and write picture to file
     console.log(picture)
@@ -69,6 +72,7 @@ export const actions: Actions = {
 	            birthday: birthday,
 	            picture: picture.name,
 	            bio: bio,
+                instruments: instruments,
 	            'parent1/name': p1Name,
 	            'parent1/phone': p1Phone,
 	            'parent1/email': p1Email,

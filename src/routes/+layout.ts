@@ -1,3 +1,13 @@
+/**
+ * (c) Copyright BAYMS
+ *
+ * Original Author:     Lin Jiang
+ * License:             MIT License
+ *
+ * Provides session data from the database to the client.
+ **/
+
+
 import { createBrowserClient, createServerClient, isBrowser, parse } from '@supabase/ssr'
 
 import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public'
