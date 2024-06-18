@@ -12,7 +12,10 @@ import { redirect } from '@sveltejs/kit'
 import type { Actions } from './$types'
 
 export async function load() {
-       let { data: events, error } = await supabase.from('events').select('*')
+       let { data: events, error } = await supabase.from('events').select('*').order('date', { ascending: true });
+       if (events.length > 3) {
+           events = events.slice(0, 3);
+       }
        return {
        	      events: events ?? [],
        };
