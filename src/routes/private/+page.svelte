@@ -7,12 +7,25 @@
  * Dashboard page.
   -->
 
-<script lang=ts>
+<script lang="ts">
   import Header from "../../lib/Header.svelte"
   import Footer from "../../lib/Footer.svelte"
   import Info from "../../lib/Info.svelte"
+  import Calendar from "../../lib/Calendar.svelte"
 
   export let data
+
+  let state0: 'inactive' | 'active' = 'active'
+  let state1: 'inactive' | 'active' = 'inactive'
+  let state2: 'inactive' | 'active' = 'inactive'
+  let state3: 'inactive' | 'active' = 'inactive'
+
+  function resetAll() {
+    state0 = 'inactive'
+    state1 = 'inactive'
+    state2 = 'inactive'
+    state3 = 'inactive'
+  }
 
   const user = data.user[0]
 </script>
@@ -32,30 +45,16 @@
             style="outline:none"
           >
             <button
-              type="button"
-              role="tab"
-              aria-selected="true"
-              aria-controls="radix-:R7nqdtfbpf:-content-info"
-              data-state="active"
-              id="radix-:R7nqdtfbpf:-trigger-info"
+              data-state={state0}
               class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
-              tabindex="-1"
-              data-orientation="horizontal"
-              data-radix-collection-item=""
+              on:click={(_) => { resetAll(); state0 = 'active'; }}
             >
               Info
             </button>
             <button
-              type="button"
-              role="tab"
-              aria-selected="false"
-              aria-controls="radix-:R7nqdtfbpf:-content-events"
-              data-state="inactive"
-              id="radix-:R7nqdtfbpf:-trigger-events"
+              data-state={state1}
               class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
-              tabindex="-1"
-              data-orientation="horizontal"
-              data-radix-collection-item=""
+              on:click={(_) => { resetAll(); state1 = 'active'; }}
             >
               Events
             </button>
@@ -70,7 +69,11 @@
             class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             style="animation-duration:0s"
           >
-	    <Info {user} />
+          {#if state0 === 'active'}
+            <Info {user} />
+          {:else if state1 === 'active'}
+            <Calendar events={data.events} locations={data.locations} /> 
+          {/if}
           </div>
           <div
             data-state="inactive"
