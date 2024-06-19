@@ -103,4 +103,14 @@ export const actions: Actions = {
                 .select()
         return redirect(303, '/private')
     },
+
+    logout: async ({ request, locals: { supabase } }) => {
+        const { error } = await supabase.auth.signOut()
+        if (error) {
+            console.error(error)
+            return redirect(303, '/auth/error')
+        } else {
+            return redirect(303, '/')
+        }
+    },
 }

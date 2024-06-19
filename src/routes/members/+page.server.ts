@@ -27,3 +27,15 @@ export async function load() {
        	      members: members ?? [],
        };
 }
+
+export const actions: Actions = {
+  logout: async ({ request, locals: { supabase } }) => {
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      console.error(error)
+      return redirect(303, '/auth/error')
+    } else {
+      return redirect(303, '/')
+    }
+  },
+}
