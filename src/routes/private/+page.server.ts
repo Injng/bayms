@@ -74,8 +74,10 @@ export const actions: Actions = {
             bio = ""
         }
 
+        console.log!("REACHED")
         // update database and write picture to file
         if (picture.size != 0 && picture.size <= 5242880) {
+            console.log!("writing")
             writeFileSync(`static/pictures/${picture.name}`, Buffer.from(await picture.arrayBuffer()))
         }
 

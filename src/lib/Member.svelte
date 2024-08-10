@@ -18,12 +18,12 @@
 
 <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
   <img
-    src={src}
+    src="pictures/{src}"
     width="300"
     height="300"
     style="aspect-ratio: 300 / 300; object-fit: cover;"
-    alt={name}
-    class="rounded-t-lg object-cover w-full h-48"
+    alt="{name}'s picture"
+    class="rounded-t-lg object-cover w-full h-auto"
   />
   <div class="p-6">
     <h3 class="text-xl font-bold mb-2">{name}</h3>

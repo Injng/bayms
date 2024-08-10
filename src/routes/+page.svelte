@@ -28,7 +28,7 @@
       <div class="container mx-auto px-4 md:px-6">
         <div class="flex flex-col items-center justify-center space-y-4 text-center">
           <div class="space-y-2">
-            <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl text-white">Upcoming Events</h2>
+            <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl text-black">Upcoming Events</h2>
             <p class="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
               Check out our upcoming concerts and community service events.
             </p>
