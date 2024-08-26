@@ -16,12 +16,15 @@
   $: ({ session, supabase } = data);
 
   onMount(() => {
+    const { data: { user } } = supabase.auth.getUser()
+    /*
     const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
       if (!newSession) {
 	/**
 	 * Queue this as a task so the navigation won't prevent the
 	 * triggering function from completing
 	 */
+     /*
 	setTimeout(() => {
 	  goto('/', { invalidateAll: true });
 	});
@@ -30,6 +33,7 @@
 	invalidate('supabase:auth');
       }
     });
+    */
 
     return () => data.subscription.unsubscribe();
   });

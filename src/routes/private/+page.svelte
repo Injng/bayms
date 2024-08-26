@@ -28,6 +28,8 @@
   }
 
   const user = data.user[0]
+  const roles = data.roles[0]
+  let isAuth = roles.role === 'admin'
 </script>
 
 <div class="flex flex-col min-h-dvh">
@@ -51,6 +53,7 @@
             >
               Info
             </button>
+            {#if isAuth}
             <button
               data-state={state1}
               class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
@@ -58,6 +61,7 @@
             >
               Events
             </button>
+            {/if}
           </div>
           <div
             data-state="active"
@@ -71,7 +75,7 @@
           >
           {#if state0 === 'active'}
             <Info {user} />
-          {:else if state1 === 'active'}
+          {:else if state1 === 'active' && isAuth}
             <Calendar events={data.events} locations={data.locations} /> 
           {/if}
           </div>

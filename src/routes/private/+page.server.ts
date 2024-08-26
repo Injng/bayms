@@ -21,10 +21,12 @@ export async function load({ parent }) {
     let { data: info, err1 } = await supabase.from('members').select('*').eq('email', data.session.user.email)
     let { data: events, err2 } = await supabase.from('events').select('*').order('date', { ascending: true })
     let { data: locations, err3 } = await supabase.from('locations').select('*')
+    let { data: roles, err4 } = await supabase.from('roles').select('*').eq('email', data.session.user.email)
     return {
         user: info ?? [],
         events: events ?? [],
-        locations: locations ?? []
+        locations: locations ?? [],
+        roles: roles ?? []
     };
 }
 

@@ -36,3 +36,12 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## User management
+Whenever a new user enters BAYMS, the following steps must be taken to add the user to the website.
+
+First, the user's email address must be entered into the `members` table. This is so that the user's information can be matched with their login information.
+
+Then, the user's email address must be entered into the `roles` table, and given the default role of `member` to ensure restricted access.
+
+Finally, create the user account in Supabase Auth. Enter a random password, then ask the user to reset their password through email.
