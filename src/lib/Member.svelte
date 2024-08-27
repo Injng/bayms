@@ -18,7 +18,7 @@
 
 <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
   <img
-    src="pictures/{src}"
+    src="{src}"
     width="300"
     height="300"
     style="aspect-ratio: 300 / 300; object-fit: cover;"
