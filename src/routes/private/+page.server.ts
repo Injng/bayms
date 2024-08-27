@@ -7,9 +7,8 @@
  * Loads the dashboard form with database info and provides action on form save.
  **/
  
-import { supabase } from '$lib/supabaseClient.js'
 import { redirect } from '@sveltejs/kit'
-import { writeFileSync } from 'fs'
+import { supabase } from '$lib/supabaseClient'
 
 import type { Actions } from './$types'
 
@@ -49,7 +48,7 @@ export const actions: Actions = {
         return redirect(303, '/private')
     },
 
-    save: async ({ request, locals: { supabase } }) => {
+    save: async ({ request, locals: { supabase }}) => {
         // get form data
         const formData = await request.formData()
         let name = formData.get('name') as string
@@ -79,8 +78,15 @@ export const actions: Actions = {
         console.log!("REACHED")
         // update database and write picture to file
         if (picture.size != 0 && picture.size <= 5242880) {
-            console.log!("writing")
-            writeFileSync(`static/pictures/${picture.name}`, Buffer.from(await picture.arrayBuffer()))
+            // Upload file using standard upload
+            const { data, error } = await supabase.storage.from('portraits').upload(picture.name, picture)
+            if (error) {
+                console.log!(error)
+                return redirect(303, '/private/error')
+            } else {
+                console.log!("success")
+            }
+            // writeFileSync(`static/pictures/${picture.name}`, Buffer.from(await picture.arrayBuffer()))
         }
 
         const { data, error } = await supabase.from('members')
@@ -112,7 +118,7 @@ export const actions: Actions = {
         const { error } = await supabase.auth.signOut()
         if (error) {
             console.error(error)
-            return redirect(303, '/auth/error')
+            return redirect(303, '/private/error')
         } else {
             return redirect(303, '/')
         }
