@@ -7,11 +7,18 @@
  * Provides session data from the database to the client.
  **/
 
-import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public'
-import type { LayoutLoad } from './$types'
-import { createBrowserClient, createServerClient, isBrowser } from '@supabase/ssr'
 
-export const load: LayoutLoad = async ({ fetch, data, depends }) => {
+import { createBrowserClient, createServerClient, isBrowser, parse } from '@supabase/ssr'
+
+import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public'
+
+import type { LayoutLoad } from './$types'
+
+export const load: LayoutLoad = async ({ data, depends, fetch }) => {
+  /**
+   * Declare a dependency so the layout can be invalidated, for example, on
+   * session refresh.
+   */
   depends('supabase:auth')
 
   const supabase = isBrowser()
@@ -19,14 +26,20 @@ export const load: LayoutLoad = async ({ fetch, data, depends }) => {
         global: {
           fetch,
         },
+        cookies: {
+          get(key) {
+            const cookie = parse(document.cookie)
+            return cookie[key]
+          },
+        },
       })
     : createServerClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
         global: {
           fetch,
         },
         cookies: {
-          getAll() {
-            return data.cookies
+          get() {
+            return JSON.stringify(data.session)
           },
         },
       })
@@ -40,5 +53,9 @@ export const load: LayoutLoad = async ({ fetch, data, depends }) => {
     data: { session },
   } = await supabase.auth.getSession()
 
-  return { supabase, session }
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  return { session, supabase, user }
 }
