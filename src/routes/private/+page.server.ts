@@ -84,7 +84,7 @@ export const actions: Actions = {
                 console.log!(error)
                 return redirect(303, '/private/error')
             } else {
-                console.log!("success")
+                const { data, error } = await supabase.from('members').update({picture: picture.name}).eq('email', email).select()
             }
             // writeFileSync(`static/pictures/${picture.name}`, Buffer.from(await picture.arrayBuffer()))
         }
@@ -100,7 +100,6 @@ export const actions: Actions = {
                     school: school,
                     grade: grade,
                     birthday: birthday,
-                    picture: picture.name,
                     bio: bio,
                     instruments: instruments,
                     'parent1/name': p1Name,
