@@ -17,7 +17,7 @@
 
   export let data
 
-  let auth = data.user !== null && data.user !== undefined
+  let auth = data.user !== null
 </script>
 
 <div class="flex flex-col min-h-dvh">
