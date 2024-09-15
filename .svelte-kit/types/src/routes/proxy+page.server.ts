@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * (c) Copyright BAYMS
  *
@@ -26,8 +27,8 @@ export async function load({ locals: { supabase } }) {
     };
 }
 
-export const actions: Actions = {
-  logout: async ({ request, locals: { supabase } }) => {
+export const actions = {
+  logout: async ({ request, locals: { supabase } }: import('./$types').RequestEvent) => {
     const { error } = await supabase.auth.signOut()
     if (error) {
       console.error(error)
@@ -37,3 +38,4 @@ export const actions: Actions = {
     }
   },
 }
+;null as any as Actions;

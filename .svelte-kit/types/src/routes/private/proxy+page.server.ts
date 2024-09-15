@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * (c) Copyright BAYMS
  *
@@ -28,8 +29,8 @@ export async function load({ parent, locals: { supabase }}) {
     };
 }
 
-export const actions: Actions = {
-    event: async ({ request, locals: { supabase } }) => {
+export const actions = {
+    event: async ({ request, locals: { supabase } }: import('./$types').RequestEvent) => {
         const formData = await request.formData()
         let name = formData.get('name') as string
         let description = formData.get('description') as string
@@ -39,7 +40,7 @@ export const actions: Actions = {
         return redirect(303, '/private')
     },
 
-    location: async ({ request, locals: { supabase } }) => {
+    location: async ({ request, locals: { supabase } }: import('./$types').RequestEvent) => {
         const formData = await request.formData()
         let name = formData.get('name') as string
         let description = formData.get('description') as string
@@ -47,7 +48,7 @@ export const actions: Actions = {
         return redirect(303, '/private')
     },
 
-    save: async ({ request, locals: { supabase }}) => {
+    save: async ({ request, locals: { supabase }}: import('./$types').RequestEvent) => {
         // get form data
         const formData = await request.formData()
         let name = formData.get('name') as string
@@ -111,7 +112,7 @@ export const actions: Actions = {
         return redirect(303, '/private')
     },
 
-    logout: async ({ request, locals: { supabase } }) => {
+    logout: async ({ request, locals: { supabase } }: import('./$types').RequestEvent) => {
         const { error } = await supabase.auth.signOut()
         if (error) {
             console.error(error)
@@ -121,3 +122,4 @@ export const actions: Actions = {
         }
     },
 }
+;null as any as Actions;
