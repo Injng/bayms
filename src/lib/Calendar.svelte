@@ -170,10 +170,14 @@
     <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl font-bold">Event Calendar</h2>
         <div class="flex gap-4">
-            <button on:click|preventDefault={(_) => { showAddLocation = true; }} class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+            <button on:click|preventDefault={(_) => { showAddLocation = !showAddLocation; }} class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
                 Create Location
             </button>
-            <button on:click|preventDefault={(_) => { showAddEvent = true; }} class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+            <button 
+                on:click|preventDefault={(_) => { showAddEvent = !showAddEvent; }} 
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 {locations.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}"
+                disabled={locations.length === 0}
+            >
                 Create Event
             </button>
         </div>
