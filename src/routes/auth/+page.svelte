@@ -42,7 +42,7 @@
                     }`}
                     on:click={() => (activeTab = "login")}
                 >
-                    Member Login
+                    Login
                 </button>
                 <button
                     class={`flex-1 py-2 text-center text-sm font-medium ${
