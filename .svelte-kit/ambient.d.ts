@@ -30,6 +30,7 @@ declare module '$env/static/private' {
 	export const DATA_KEY: string;
 	export const SHELL: string;
 	export const npm_command: string;
+	export const WINDOWID: string;
 	export const npm_config_userconfig: string;
 	export const COLORTERM: string;
 	export const HYPRLAND_CMD: string;
@@ -39,19 +40,16 @@ declare module '$env/static/private' {
 	export const TERM_PROGRAM_VERSION: string;
 	export const GTK_IM_MODULE: string;
 	export const XDG_BACKEND: string;
-	export const TMUX: string;
 	export const NODE: string;
 	export const LC_ADDRESS: string;
 	export const LC_NAME: string;
 	export const GRADLE_HOME: string;
-	export const TMUX_PLUGIN_MANAGER_PATH: string;
 	export const COLOR: string;
 	export const npm_config_local_prefix: string;
 	export const XMODIFIERS: string;
 	export const DESKTOP_SESSION: string;
 	export const LC_MONETARY: string;
 	export const HL_INITIAL_WORKSPACE_TOKEN: string;
-	export const KITTY_PID: string;
 	export const npm_config_globalconfig: string;
 	export const XCURSOR_SIZE: string;
 	export const EDITOR: string;
@@ -63,7 +61,6 @@ declare module '$env/static/private' {
 	export const MANPATH: string;
 	export const npm_config_init_module: string;
 	export const _: string;
-	export const KITTY_PUBLIC_KEY: string;
 	export const MOTD_SHOWN: string;
 	export const HOME: string;
 	export const LANG: string;
@@ -73,7 +70,6 @@ declare module '$env/static/private' {
 	export const npm_package_version: string;
 	export const STARSHIP_SHELL: string;
 	export const WAYLAND_DISPLAY: string;
-	export const KITTY_WINDOW_ID: string;
 	export const XDG_SEAT_PATH: string;
 	export const INIT_CWD: string;
 	export const STARSHIP_SESSION_KEY: string;
@@ -84,11 +80,9 @@ declare module '$env/static/private' {
 	export const XDG_SESSION_CLASS: string;
 	export const LC_IDENTIFICATION: string;
 	export const TERM: string;
-	export const TERMINFO: string;
 	export const npm_package_name: string;
 	export const npm_config_prefix: string;
 	export const USER: string;
-	export const TMUX_PANE: string;
 	export const HYPRLAND_INSTANCE_SIGNATURE: string;
 	export const DISPLAY: string;
 	export const npm_lifecycle_event: string;
@@ -106,6 +100,7 @@ declare module '$env/static/private' {
 	export const DEBUGINFOD_URLS: string;
 	export const npm_package_json: string;
 	export const LC_TIME: string;
+	export const XDG_DATA_DIRS: string;
 	export const npm_config_noproxy: string;
 	export const BROWSER: string;
 	export const PATH: string;
@@ -115,7 +110,8 @@ declare module '$env/static/private' {
 	export const HG: string;
 	export const MAIL: string;
 	export const NVM_BIN: string;
-	export const KITTY_INSTALLATION_DIR: string;
+	export const ALACRITTY_WINDOW_ID: string;
+	export const ZED_TERM: string;
 	export const npm_node_execpath: string;
 	export const LC_NUMERIC: string;
 	export const OLDPWD: string;
@@ -158,6 +154,7 @@ declare module '$env/dynamic/private' {
 		DATA_KEY: string;
 		SHELL: string;
 		npm_command: string;
+		WINDOWID: string;
 		npm_config_userconfig: string;
 		COLORTERM: string;
 		HYPRLAND_CMD: string;
@@ -167,19 +164,16 @@ declare module '$env/dynamic/private' {
 		TERM_PROGRAM_VERSION: string;
 		GTK_IM_MODULE: string;
 		XDG_BACKEND: string;
-		TMUX: string;
 		NODE: string;
 		LC_ADDRESS: string;
 		LC_NAME: string;
 		GRADLE_HOME: string;
-		TMUX_PLUGIN_MANAGER_PATH: string;
 		COLOR: string;
 		npm_config_local_prefix: string;
 		XMODIFIERS: string;
 		DESKTOP_SESSION: string;
 		LC_MONETARY: string;
 		HL_INITIAL_WORKSPACE_TOKEN: string;
-		KITTY_PID: string;
 		npm_config_globalconfig: string;
 		XCURSOR_SIZE: string;
 		EDITOR: string;
@@ -191,7 +185,6 @@ declare module '$env/dynamic/private' {
 		MANPATH: string;
 		npm_config_init_module: string;
 		_: string;
-		KITTY_PUBLIC_KEY: string;
 		MOTD_SHOWN: string;
 		HOME: string;
 		LANG: string;
@@ -201,7 +194,6 @@ declare module '$env/dynamic/private' {
 		npm_package_version: string;
 		STARSHIP_SHELL: string;
 		WAYLAND_DISPLAY: string;
-		KITTY_WINDOW_ID: string;
 		XDG_SEAT_PATH: string;
 		INIT_CWD: string;
 		STARSHIP_SESSION_KEY: string;
@@ -212,11 +204,9 @@ declare module '$env/dynamic/private' {
 		XDG_SESSION_CLASS: string;
 		LC_IDENTIFICATION: string;
 		TERM: string;
-		TERMINFO: string;
 		npm_package_name: string;
 		npm_config_prefix: string;
 		USER: string;
-		TMUX_PANE: string;
 		HYPRLAND_INSTANCE_SIGNATURE: string;
 		DISPLAY: string;
 		npm_lifecycle_event: string;
@@ -234,6 +224,7 @@ declare module '$env/dynamic/private' {
 		DEBUGINFOD_URLS: string;
 		npm_package_json: string;
 		LC_TIME: string;
+		XDG_DATA_DIRS: string;
 		npm_config_noproxy: string;
 		BROWSER: string;
 		PATH: string;
@@ -243,7 +234,8 @@ declare module '$env/dynamic/private' {
 		HG: string;
 		MAIL: string;
 		NVM_BIN: string;
-		KITTY_INSTALLATION_DIR: string;
+		ALACRITTY_WINDOW_ID: string;
+		ZED_TERM: string;
 		npm_node_execpath: string;
 		LC_NUMERIC: string;
 		OLDPWD: string;
