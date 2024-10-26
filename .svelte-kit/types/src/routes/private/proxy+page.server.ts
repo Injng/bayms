@@ -19,6 +19,58 @@ interface LocalsWithSupabase {
 
 let email: string = "";
 
+// format phone number universally
+function formatPhoneNumber(phone: string): string {
+  if (!phone) return "";
+
+  // remove all non-digit characters
+  const cleaned = phone.replace(/\D/g, "");
+
+  // if it's a US/Canada number (10 or 11 digits)
+  if (
+    cleaned.length === 10 ||
+    (cleaned.length === 11 && cleaned.startsWith("1"))
+  ) {
+    // remove leading 1 if present
+    const digits = cleaned.length === 11 ? cleaned.substring(1) : cleaned;
+    // format as (XXX) XXX-XXXX
+    return `(${digits.substring(0, 3)}) ${digits.substring(3, 6)}-${digits.substring(6)}`;
+  }
+
+  // for international numbers:
+  // if longer than 7 digits, group in chunks of 2-3 from the right
+  if (cleaned.length >= 7) {
+    let formatted = "";
+    let remaining = cleaned;
+
+    // add last 4 digits
+    formatted = remaining.slice(-4);
+    remaining = remaining.slice(0, -4);
+
+    // add next 3 digits
+    if (remaining.length > 0) {
+      formatted = remaining.slice(-3) + "-" + formatted;
+      remaining = remaining.slice(0, -3);
+    }
+
+    // add remaining digits in groups of 2-3
+    while (remaining.length > 0) {
+      if (remaining.length > 3) {
+        formatted = remaining.slice(-3) + "-" + formatted;
+        remaining = remaining.slice(0, -3);
+      } else {
+        formatted = remaining + "-" + formatted;
+        remaining = "";
+      }
+    }
+
+    return formatted;
+  }
+
+  // for very short numbers, just return as is
+  return cleaned;
+}
+
 export const load = async ({
   parent,
   locals: { supabase },
@@ -57,11 +109,57 @@ export const load = async ({
     .select("*")
     .eq("email", email);
 
+  let { data: members } = await supabase.from("members").select("*");
+  members = members ?? [];
+  // replace all null values with empty string and format phone numbers
+  members = members.map((member) => {
+    for (const key in member) {
+      if (member[key] === null) {
+        member[key] = "";
+      }
+      // Format phone numbers
+      if (key === "phone") {
+        member[key] = formatPhoneNumber(member[key]);
+      }
+      if (key === "parent1/phone") {
+        member[key] = formatPhoneNumber(member[key]);
+      }
+      if (key === "parent2/phone") {
+        member[key] = formatPhoneNumber(member[key]);
+      }
+    }
+    return member;
+  });
+
+  let { data: applicants } = await supabase.from("applicants").select("*");
+  applicants = applicants ?? [];
+  // replace all null values with empty string and format phone numbers
+  applicants = applicants.map((applicant) => {
+    for (const key in applicant) {
+      if (applicant[key] === null) {
+        applicant[key] = "";
+      }
+      // Format phone numbers
+      if (key === "phone") {
+        applicant[key] = formatPhoneNumber(applicant[key]);
+      }
+      if (key === "parent1/phone") {
+        applicant[key] = formatPhoneNumber(applicant[key]);
+      }
+      if (key === "parent2/phone") {
+        applicant[key] = formatPhoneNumber(applicant[key]);
+      }
+    }
+    return applicant;
+  });
+
   return {
     user: userInfo ?? [],
     events: events ?? [],
     locations: locations ?? [],
     roles: roles ?? [],
+    members: members ?? [],
+    applicants: applicants ?? [],
   };
 };
 
@@ -200,6 +298,38 @@ export const actions = {
       return redirect(303, "/private/error");
     }
     return redirect(303, "/");
+  },
+
+  accept: async ({ request, locals: { supabase } }: import('./$types').RequestEvent) => {
+    const formData = await request.formData();
+    const email = formData.get("email") as string;
+
+    // get applicant data
+    const { data: applicant } = await supabase
+      .from("applicants")
+      .select("*")
+      .eq("email", email)
+      .single();
+
+    console.log(applicant);
+
+    if (applicant) {
+      // insert into members
+      await supabase.from("members").insert(applicant);
+      // delete from applicants
+      await supabase.from("applicants").delete().eq("email", email);
+    }
+
+    return { success: true };
+  },
+
+  reject: async ({ request, locals: { supabase } }: import('./$types').RequestEvent) => {
+    const formData = await request.formData();
+    const email = formData.get("email") as string;
+
+    await supabase.from("applicants").delete().eq("email", email);
+
+    return { success: true };
   },
 };
 ;null as any as PageServerLoad;;null as any as Actions;
